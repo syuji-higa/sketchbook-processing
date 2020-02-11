@@ -1,7 +1,9 @@
 float widthHerf, heightHerf, maxLen;
-float points[][] = new float[50][4];
+float points[][] = new float[100][4];
 float lineLen = 10;
-float maxLineLenRate = 5;
+float maxLineLenRate = 3;
+float radiusRate = 0.5;
+float blur = 5;
 
 void setup() {
   size(516, 516);
@@ -25,7 +27,7 @@ void setup() {
 
 void draw() {
   blendMode(BLEND);
-  fill(0, 10);
+  fill(0, blur);
   rect(0, 0, width, height);
 
   blendMode(SCREEN);
@@ -47,7 +49,7 @@ void draw() {
     float len = lineLen * int(random(1, maxLineLenRate));
 
     float root = (int(random(2))*2-1);
-    dir.rotate(HALF_PI * root);
+    dir.rotate(HALF_PI * radiusRate * root);
     p2.add(dir.mult(len));
 
     if (p2.x < -maxLen || maxLen < p2.x || p2.y < -maxLen || maxLen < p2.y) {
